@@ -37,7 +37,7 @@ node {
         try {
 
             sshagent (credentials: ['ssh']) {
-                sh 'ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker rm -f nodeapp'
+                sh "ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker rm -f nodeapp"
             }
 
         }
@@ -48,8 +48,8 @@ node {
 
     stage('Deploy to production') {
         sshagent (credentials: ['ssh']) {
-            sh 'ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker pull jonasvinther/cd-for-web'
-            sh 'ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker run -d --name nodeapp --restart=always -p 3000:3000 jonasvinther/cd-for-web'
+            sh "ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker pull jonasvinther/cd-for-web"
+            sh "ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker run -d --name nodeapp --restart=always -p 3000:3000 jonasvinther/cd-for-web"
         }
     }
     
