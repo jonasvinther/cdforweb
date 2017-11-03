@@ -49,7 +49,7 @@ node {
     stage('Deploy to production') {
         sshagent (credentials: ['ssh']) {
             sh "ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker pull jonasvinther/cd-for-web"
-            sh "ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker run -d --label='traefik.frontend.rule=Host:nodeapp.praqma.io' --label='traefik.port=80' --label='traefik.enable=true' --name nodeapp --restart=always jonasvinther/cd-for-web"
+            sh "ssh -o StrictHostKeyChecking=no root@${HOST_IP} docker run -d --label='traefik.frontend.rule=Host:nodeapp.praqma.io' --label='traefik.port=3000' --label='traefik.enable=true' --name nodeapp --restart=always -p 3000:3000 jonasvinther/cd-for-web"
         }
     }
     
