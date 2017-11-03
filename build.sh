@@ -1,0 +1,1 @@
+docker build -t nodetest -f docker/images/node/Dockerfile .
