@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("jonasvinther/cd-for-web")
+        app = docker.build("jonasvinther/cd-for-web", "-f docker/images/node/Dockerfile")
     }
 
     stage('Push image') {
